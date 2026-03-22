@@ -1,0 +1,254 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Creathanna Talún Seismic World",
+        "description": "Cumraigh an sampla monatóireachta seo. Is féidir leat roinnt samplaí a chruthú chun réimsí éagsúla nó tairseacha méide a mhonatóiriú.",
+        "data": {
+          "name": "Ainm an tsampla",
+          "instance_type": "Cineál an tsampla",
+          "min_magnitude": "Íosmhéid (scála Richter)",
+          "feed_period": "Tréimhse sonraí",
+          "max_events": "Uasmhéid teagmhais ar an léarscáil",
+          "units": "Aonaid fad",
+          "sort_by": "Sórtáil teagmhais de réir"
+        },
+        "data_description": {
+          "min_magnitude": "Ní chuirfear san áireamh ach creathanna talún atá cothrom leis an méid seo nó os a chionn (0.0–9.9).",
+          "max_events": "An líon uasta creathanna talún a thaispeántar ar an léarscáil (50–500). Coinnítear teagmhais le M≥6.0 i gcónaí beag beann ar an teorainn seo.",
+          "sort_by": "Sainmhíníonn sé an t-ord ina bhfeictear creathanna talún ar an léarscáil agus i mbraiteoirí."
+        }
+      },
+      "area": {
+        "title": "Cumraíocht Limistéir Saincheaptha",
+        "description": "Sainmhínigh an limistéar geografach le monatóireacht a dhéanamh air. Áireofar gach crith talún laistigh den gha sonraithe ón bpointe lárnach.",
+        "data": {
+          "latitude": "Latitude an lárphointe",
+          "longitude": "Longitude an lárphointe",
+          "radius_km": "Ga cuardaigh (km)"
+        },
+        "data_description": {
+          "latitude": "Latitude lár an limistéir mhonatóireachta (−90 go 90).",
+          "longitude": "Longitude lár an limistéir mhonatóireachta (−180 go 180).",
+          "radius_km": "Ga i gcileiméadair timpeall an lárphointe (10–20,000 km)."
+        }
+      },
+      "filters": {
+        "title": "Scagairí & Braiteoir Foláirimh",
+        "description": "Is féidir srian a chur leis na creathanna talún a thaispeántar, agus braiteoir dénártha foláirimh creatha talún a chumrú.",
+        "data": {
+          "min_alert_level": "Íosleibhéal foláirimh PAGER",
+          "only_tsunami": "Ná taispeáin ach teagmhais le rabhadh súnámaí",
+          "max_depth_km": "Uasdoimhneacht (km)",
+          "only_reviewed": "Teagmhais athbhreithnithe amháin",
+          "alert_min_magnitude": "Braiteoir foláirimh — íosmhéid",
+          "alert_time_window": "Braiteoir foláirimh — fuinneog ama"
+        },
+        "data_description": {
+          "min_alert_level": "Scag creathanna talún de réir leibhéal foláirimh USGS PAGER. Roghnaigh 'Dada' chun gach teagmhas a thaispeáint beag beann ar an leibhéal foláirimh.",
+          "max_depth_km": "Uasdoimhneacht fhócasach i km (0–700). Socraigh go 700 chun creathanna talún ag aon doimhneacht a chur san áireamh. Is mó an léirscrios a dhéanann teagmhais éadroma (< 70 km) de ghnáth.",
+          "only_reviewed": "Nuair atá sé cumasaithe, ní thaispeánann sé ach creathanna talún a ndearna an USGS athbhreithniú orthu de láimh. Níos cruinne ach d’fhéadfadh sé tarlú le moill.",
+          "alert_min_magnitude": "Casann an braiteoir dénártha foláirimh creatha talún AIR nuair a bhraitear crith talún den mhéid seo nó níos mó laistigh den fhuinneog ama.",
+          "alert_time_window": "Cé mhéad uair an chloig le breathnú siar nuair a bhíonn an braiteoir dénártha foláirimh creatha talún á mheas (1–72 uair an chloig)."
+        }
+      }
+    },
+    "error": {
+      "invalid_coordinates": "Comhordanáidí neamhbhailí. Caithfidh an latitude a bheith idir −90 agus 90, agus an longitude idir −180 agus 180.",
+      "invalid_radius": "Caithfidh an ga a bheith idir 10 agus 20,000 km.",
+      "cannot_connect": "Ní féidir nascadh leis an USGS API. Seiceáil do nasc idirlín agus bain triail eile as.",
+      "unknown": "Earráid gan choinne. Seiceáil logaí Home Assistant le haghaidh tuilleadh sonraí."
+    },
+    "abort": {
+      "already_configured": "Tá an sampla seo cumraithe cheana féin."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Athchumraigh Creathanna Talún Seismic World",
+        "description": "Nuashonraigh na bunshocruithe don sampla monatóireachta seo.",
+        "data": {
+          "name": "Ainm an tsampla",
+          "instance_type": "Cineál an tsampla",
+          "min_magnitude": "Íosmhéid (scála Richter)",
+          "feed_period": "Tréimhse sonraí",
+          "max_events": "Uasmhéid teagmhais ar an léarscáil",
+          "units": "Aonaid fad",
+          "sort_by": "Sórtáil teagmhais de réir"
+        },
+        "data_description": {
+          "min_magnitude": "Ní chuirfear san áireamh ach creathanna talún atá cothrom leis an méid seo nó os a chionn (0.0–9.9).",
+          "max_events": "An líon uasta creathanna talún a thaispeántar ar an léarscáil (50–500). Coinnítear teagmhais le M≥6.0 i gcónaí beag beann ar an teorainn seo.",
+          "sort_by": "Sainmhíníonn sé an t-ord ina bhfeictear creathanna talún ar an léarscáil agus i mbraiteoirí."
+        }
+      },
+      "area": {
+        "title": "Cumraíocht Limistéir Saincheaptha",
+        "description": "Nuashonraigh an limistéar geografach le monatóireacht a dhéanamh air.",
+        "data": {
+          "latitude": "Latitude an lárphointe",
+          "longitude": "Longitude an lárphointe",
+          "radius_km": "Ga cuardaigh (km)"
+        },
+        "data_description": {
+          "latitude": "Latitude lár an limistéir mhonatóireachta (−90 go 90).",
+          "longitude": "Longitude lár an limistéir mhonatóireachta (−180 go 180).",
+          "radius_km": "Ga i gcileiméadair timpeall an lárphointe (10–20,000 km)."
+        }
+      },
+      "filters": {
+        "title": "Scagairí & Braiteoir Foláirimh",
+        "description": "Nuashonraigh scagairí roghnacha agus cumraíocht an bhraiteora dhénártha foláirimh creatha talún.",
+        "data": {
+          "min_alert_level": "Íosleibhéal foláirimh PAGER",
+          "only_tsunami": "Ná taispeáin ach teagmhais le rabhadh súnámaí",
+          "max_depth_km": "Uasdoimhneacht (km)",
+          "only_reviewed": "Teagmhais athbhreithnithe amháin",
+          "alert_min_magnitude": "Braiteoir foláirimh — íosmhéid",
+          "alert_time_window": "Braiteoir foláirimh — fuinneog ama"
+        },
+        "data_description": {
+          "min_alert_level": "Scag creathanna talún de réir leibhéal foláirimh USGS PAGER. Roghnaigh 'Dada' chun gach teagmhas a thaispeáint beag beann ar an leibhéal foláirimh.",
+          "max_depth_km": "Uasdoimhneacht fhócasach i km (0–700). Socraigh go 700 chun creathanna talún ag aon doimhneacht a chur san áireamh. Is mó an léirscrios a dhéanann teagmhais éadroma (< 70 km) de ghnáth.",
+          "only_reviewed": "Nuair atá sé cumasaithe, ní thaispeánann sé ach creathanna talún a ndearna an USGS athbhreithniú orthu de láimh. Níos cruinne ach d’fhéadfadh sé tarlú le moill.",
+          "alert_min_magnitude": "Casann an braiteoir dénártha foláirimh creatha talún AIR nuair a bhraitear crith talún den mhéid seo nó níos mó laistigh den fhuinneog ama.",
+          "alert_time_window": "Cé mhéad uair an chloig le breathnú siar nuair a bhíonn an braiteoir dénártha foláirimh creatha talún á mheas (1–72 uair an chloig)."
+        }
+      }
+    },
+    "error": {
+      "invalid_coordinates": "Comhordanáidí neamhbhailí. Caithfidh an latitude a bheith idir −90 agus 90, agus an longitude idir −180 agus 180.",
+      "invalid_radius": "Caithfidh an ga a bheith idir 10 agus 20,000 km.",
+      "unknown": "Earráid gan choinne. Seiceáil logaí Home Assistant le haghaidh tuilleadh sonraí."
+    }
+  },
+  "selector": {
+    "instance_type": {
+      "options": {
+        "global": "Domhanda (ar fud an domhain)",
+        "custom_area": "Limistéar saincheaptha (ga)"
+      }
+    },
+    "feed_period": {
+      "options": {
+        "hour": "An uair dheireanach",
+        "day": "Na 24 uair an chloig dheireanacha",
+        "week": "Na 7 lá dheireanacha",
+        "month": "Na 30 lá dheireanacha"
+      }
+    },
+    "units": {
+      "options": {
+        "km": "Cileiméadair (km)",
+        "mi": "Mílte (mi)"
+      }
+    },
+    "sort_by": {
+      "options": {
+        "magnitude": "Méid (is láidre ar dtús)",
+        "time": "Am (is déanaí ar dtús)",
+        "distance": "Fad (is gaire ar dtús)"
+      }
+    },
+    "alert_level": {
+      "options": {
+        "none": "Dada (taispeáin gach ceann)",
+        "green": "Glas",
+        "yellow": "Buí",
+        "orange": "Oráiste",
+        "red": "Dearg (is déine)"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "total_earthquakes": {
+        "name": "Iomlán na gcreathanna talún"
+      },
+      "strongest_magnitude": {
+        "name": "An crith talún is láidre"
+      },
+      "strongest_location": {
+        "name": "Suíomh an chreatha talún is láidre"
+      },
+      "average_magnitude": {
+        "name": "Meánmhéid"
+      },
+      "latest_earthquake": {
+        "name": "An crith talún is déanaí"
+      },
+      "latest_earthquake_time": {
+        "name": "Am an chreatha talún is déanaí"
+      },
+      "earthquakes_last_hour": {
+        "name": "Creathanna talún an uair dheireanach"
+      },
+      "significant_earthquakes": {
+        "name": "Creathanna talún suntasacha"
+      },
+      "tsunami_warnings": {
+        "name": "Rabhaidh súnámaí gníomhacha"
+      },
+      "highest_alert_level": {
+        "name": "An leibhéal foláirimh is airde"
+      },
+      "red_alert_count": {
+        "name": "Teagmhais foláirimh dheirg"
+      },
+      "nearest_distance": {
+        "name": "Fad an chreatha talún is gaire"
+      },
+      "nearest_magnitude": {
+        "name": "Méid an chreatha talún is gaire"
+      },
+      "last_update": {
+        "name": "Nuashonrú deireanach"
+      },
+      "api_status": {
+        "name": "Stádas API"
+      },
+      "events_fetched": {
+        "name": "Teagmhais faighte"
+      },
+      "events_displayed": {
+        "name": "Teagmhais ar taispeáint"
+      }
+    },
+    "binary_sensor": {
+      "earthquake_alert": {
+        "name": "Foláireamh creatha talún"
+      },
+      "tsunami_warning": {
+        "name": "Rabhadh súnámaí gníomhach"
+      }
+    },
+    "button": {
+      "force_refresh": {
+        "name": "Éigean athnuachan"
+      }
+    },
+    "image": {
+      "shakemap": {
+        "name": "ShakeMap"
+      }
+    },
+    "calendar": {
+      "earthquakes": {
+        "name": "Creathanna Talún"
+      }
+    },
+    "event": {
+      "new_earthquake": {
+        "name": "Crith talún nua braite",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "earthquake_detected": "Crith talún braite"
+            }
+          }
+        }
+      }
+    }
+  }
+}
