@@ -28,8 +28,8 @@
           "radius_km": "Suchradius (km)"
         },
         "data_description": {
-          "latitude": "Breitengrad des Zentrums des überwachten Gebiets (-90 bis 90).",
-          "longitude": "Längengrad des Zentrums des überwachten Gebiets (-180 bis 180).",
+          "latitude": "Breitengrad des Zentrums des überwachten Gebiets (−90 bis 90).",
+          "longitude": "Längengrad des Zentrums des überwachten Gebiets (−180 bis 180).",
           "radius_km": "Radius in Kilometern um den Mittelpunkt (10–20.000 km)."
         }
       },
@@ -54,10 +54,10 @@
       }
     },
     "error": {
-      "invalid_coordinates": "Ungültige Koordinaten. Breitengrad muss zwischen -90 und 90 liegen, Längengrad zwischen -180 und 180.",
+      "invalid_coordinates": "Ungültige Koordinaten. Breitengrad muss zwischen −90 und 90 liegen, Längengrad zwischen −180 und 180.",
       "invalid_radius": "Der Radius muss zwischen 10 und 20.000 km liegen.",
-      "cannot_connect": "Verbindung zur USGS-API nicht möglich. Bitte überprüfen Sie Ihre Internetverbindung.",
-      "unknown": "Unerwarteter Fehler. Bitte prüfen Sie die Home Assistant Logs für Details."
+      "cannot_connect": "Verbindung zur USGS-API nicht möglich. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.",
+      "unknown": "Unerwarteter Fehler. Bitte prüfen Sie die Home Assistant Logs für weitere Details."
     },
     "abort": {
       "already_configured": "Diese Instanz ist bereits konfiguriert."
@@ -67,15 +67,67 @@
     "step": {
       "init": {
         "title": "Seismic World Erdbeben neu konfigurieren",
-        "description": "Aktualisieren Sie die Grundeinstellungen für diese Überwachungsinstanz."
+        "description": "Aktualisieren Sie die Grundeinstellungen für diese Überwachungsinstanz.",
+        "data": {
+          "name": "Instanzname",
+          "instance_type": "Instanztyp",
+          "min_magnitude": "Mindestmagnitude (Richter-Skala)",
+          "feed_period": "Datenzeitraum",
+          "max_events": "Maximale Ereignisse auf der Karte",
+          "units": "Entfernungseinheiten",
+          "sort_by": "Ereignisse sortieren nach"
+        },
+        "data_description": {
+          "min_magnitude": "Nur Erdbeben mit dieser oder einer höheren Magnitude werden berücksichtigt (0,0–9,9).",
+          "max_events": "Maximale Anzahl der auf der Karte angezeigten Erdbeben (50–500). Ereignisse mit M≥6,0 werden unabhängig von diesem Limit immer beibehalten.",
+          "sort_by": "Definiert die Reihenfolge, in der Erdbeben auf der Karte und in den Sensoren erscheinen."
+        }
+      },
+      "area": {
+        "title": "Benutzerdefinierte Gebietskonfiguration",
+        "description": "Aktualisieren Sie das zu überwachende geografische Gebiet.",
+        "data": {
+          "latitude": "Breitengrad des Zentrums",
+          "longitude": "Längengrad des Zentrums",
+          "radius_km": "Suchradius (km)"
+        },
+        "data_description": {
+          "latitude": "Breitengrad des Zentrums des überwachten Gebiets (−90 bis 90).",
+          "longitude": "Längengrad des Zentrums des überwachten Gebiets (−180 bis 180).",
+          "radius_km": "Radius in Kilometern um den Mittelpunkt (10–20.000 km)."
+        }
+      },
+      "filters": {
+        "title": "Filter & Alarmsensor",
+        "description": "Aktualisieren Sie optionale Filter und die Konfiguration des Binärsensors für den Erdbebenalarm.",
+        "data": {
+          "min_alert_level": "Mindest-PAGER-Alarmstufe",
+          "only_tsunami": "Nur Ereignisse mit Tsunami-Warnung anzeigen",
+          "max_depth_km": "Maximale Tiefe (km)",
+          "only_reviewed": "Nur geprüfte Ereignisse",
+          "alert_min_magnitude": "Alarmsensor — Mindestmagnitude",
+          "alert_time_window": "Alarmsensor — Zeitfenster"
+        },
+        "data_description": {
+          "min_alert_level": "Erdbeben nach USGS PAGER-Alarmstufe filtern. Wählen Sie 'Keine', um alle Ereignisse unabhängig von der Alarmstufe anzuzeigen.",
+          "max_depth_km": "Maximale Herdtiefe in km (0–700). Auf 700 setzen, um Erdbeben in jeder Tiefe einzubeziehen. Flache Ereignisse (< 70 km) sind in der Regel zerstörerischer.",
+          "only_reviewed": "Wenn aktiviert, werden nur Erdbeben angezeigt, die manuell vom USGS überprüft wurden. Genauer, kann aber verzögert erscheinen.",
+          "alert_min_magnitude": "Der Erdbebenalarm-Binärsensor schaltet sich EIN, wenn ein Erdbeben dieser Magnitude oder höher innerhalb des Zeitfensters erkannt wird.",
+          "alert_time_window": "Wie viele Stunden zurückgeblickt werden soll, um den Erdbebenalarm-Binärsensor auszuwerten (1–72 Stunden)."
+        }
       }
+    },
+    "error": {
+      "invalid_coordinates": "Ungültige Koordinaten. Breitengrad muss zwischen −90 und 90 liegen, Längengrad zwischen −180 und 180.",
+      "invalid_radius": "Der Radius muss zwischen 10 und 20.000 km liegen.",
+      "unknown": "Unerwarteter Fehler. Bitte prüfen Sie die Home Assistant Logs für weitere Details."
     }
   },
   "selector": {
     "instance_type": {
       "options": {
         "global": "Global (weltweit)",
-        "custom_area": "Benutzerdefiniertes Gebiet (Radius)"
+        "custom_area": "Benutzerdefinierter Bereich (Radius)"
       }
     },
     "feed_period": {
@@ -111,36 +163,80 @@
   },
   "entity": {
     "sensor": {
-      "total_earthquakes": { "name": "Erdbeben insgesamt" },
-      "strongest_magnitude": { "name": "Stärkstes Erdbeben" },
-      "strongest_location": { "name": "Ort des stärksten Erdbebens" },
-      "average_magnitude": { "name": "Durchschnittliche Magnitude" },
-      "latest_earthquake": { "name": "Letztes Erdbeben" },
-      "latest_earthquake_time": { "name": "Zeitpunkt des letzten Erdbebens" },
-      "earthquakes_last_hour": { "name": "Erdbeben in der letzten Stunde" },
-      "significant_earthquakes": { "name": "Bedeutende Erdbeben" },
-      "tsunami_warnings": { "name": "Aktive Tsunami-Warnungen" },
-      "highest_alert_level": { "name": "Höchste Alarmstufe" },
-      "red_alert_count": { "name": "Ereignisse mit rotem Alarm" },
-      "nearest_distance": { "name": "Entfernung zum nächsten Erdbeben" },
-      "nearest_magnitude": { "name": "Magnitude des nächsten Erdbebens" },
-      "last_update": { "name": "Letzte Aktualisierung" },
-      "api_status": { "name": "API-Status" },
-      "events_fetched": { "name": "Abgerufene Ereignisse" },
-      "events_displayed": { "name": "Angezeigte Ereignisse" }
+      "total_earthquakes": {
+        "name": "Erdbeben insgesamt"
+      },
+      "strongest_magnitude": {
+        "name": "Stärkstes Erdbeben"
+      },
+      "strongest_location": {
+        "name": "Ort des stärksten Erdbebens"
+      },
+      "average_magnitude": {
+        "name": "Durchschnittliche Magnitude"
+      },
+      "latest_earthquake": {
+        "name": "Letztes Erdbeben"
+      },
+      "latest_earthquake_time": {
+        "name": "Zeitpunkt des letzten Erdbebens"
+      },
+      "earthquakes_last_hour": {
+        "name": "Erdbeben in der letzten Stunde"
+      },
+      "significant_earthquakes": {
+        "name": "Bedeutende Erdbeben"
+      },
+      "tsunami_warnings": {
+        "name": "Aktive Tsunami-Warnungen"
+      },
+      "highest_alert_level": {
+        "name": "Höchste Alarmstufe"
+      },
+      "red_alert_count": {
+        "name": "Ereignisse mit rotem Alarm"
+      },
+      "nearest_distance": {
+        "name": "Entfernung zum nächsten Erdbeben"
+      },
+      "nearest_magnitude": {
+        "name": "Magnitude des nächsten Erdbebens"
+      },
+      "last_update": {
+        "name": "Letzte Aktualisierung"
+      },
+      "api_status": {
+        "name": "API-Status"
+      },
+      "events_fetched": {
+        "name": "Abgerufene Ereignisse"
+      },
+      "events_displayed": {
+        "name": "Angezeigte Ereignisse"
+      }
     },
     "binary_sensor": {
-      "earthquake_alert": { "name": "Erdbebenalarm" },
-      "tsunami_warning": { "name": "Tsunami-Warnung aktiv" }
+      "earthquake_alert": {
+        "name": "Erdbebenalarm"
+      },
+      "tsunami_warning": {
+        "name": "Tsunami-Warnung aktiv"
+      }
     },
     "button": {
-      "force_refresh": { "name": "Aktualisierung erzwingen" }
+      "force_refresh": {
+        "name": "Aktualisierung erzwingen"
+      }
     },
     "image": {
-      "shakemap": { "name": "ShakeMap (Erschütterungskarte)" }
+      "shakemap": {
+        "name": "ShakeMap"
+      }
     },
     "calendar": {
-      "earthquakes": { "name": "Erdbeben" }
+      "earthquakes": {
+        "name": "Erdbeben"
+      }
     },
     "event": {
       "new_earthquake": {
