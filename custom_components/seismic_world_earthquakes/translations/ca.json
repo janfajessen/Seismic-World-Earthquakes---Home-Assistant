@@ -1,0 +1,254 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Seismic World Earthquakes",
+        "description": "Configura aquesta instància de monitoratge. Pots crear múltiples instàncies per supervisar àrees o llindars de magnitud diferents.",
+        "data": {
+          "name": "Nom de la instància",
+          "instance_type": "Tipus d'instància",
+          "min_magnitude": "Magnitud mínima (escala Richter)",
+          "feed_period": "Període de dades",
+          "max_events": "Màxim d'esdeveniments al mapa",
+          "units": "Unitats de distància",
+          "sort_by": "Ordenar per"
+        },
+        "data_description": {
+          "min_magnitude": "Només s'inclouran els terratrèmols amb magnitud igual o superior a aquest valor (0.0–9.9).",
+          "max_events": "Nombre màxim de terratrèmols al mapa (50–500). Els esdeveniments amb M≥6.0 sempre es conserven independentment d'aquest límit.",
+          "sort_by": "Defineix l'ordre en què apareixen els terratrèmols al mapa i als sensors."
+        }
+      },
+      "area": {
+        "title": "Configuració d'àrea personalitzada",
+        "description": "Defineix l'àrea geogràfica a supervisar. S'inclouran tots els terratrèmols dins del radi especificat al voltant del punt central.",
+        "data": {
+          "latitude": "Latitud del centre",
+          "longitude": "Longitud del centre",
+          "radius_km": "Radi de cerca (km)"
+        },
+        "data_description": {
+          "latitude": "Latitud del centre de l'àrea supervisada (−90 a 90).",
+          "longitude": "Longitud del centre de l'àrea supervisada (−180 a 180).",
+          "radius_km": "Radi en quilòmetres al voltant del punt central (10–20.000 km)."
+        }
+      },
+      "filters": {
+        "title": "Filtres i sensor d'alerta",
+        "description": "Restringeix opcionalment quins terratrèmols es mostren i configura el sensor binari d'alerta.",
+        "data": {
+          "min_alert_level": "Nivell mínim d'alerta PAGER",
+          "only_tsunami": "Mostrar només esdeveniments amb avís de tsunami",
+          "max_depth_km": "Profunditat màxima (km)",
+          "only_reviewed": "Només esdeveniments revisats",
+          "alert_min_magnitude": "Sensor d'alerta — magnitud mínima",
+          "alert_time_window": "Sensor d'alerta — finestra temporal"
+        },
+        "data_description": {
+          "min_alert_level": "Filtra els terratrèmols per nivell d'alerta PAGER de l'USGS. Selecciona 'Cap' per mostrar tots els esdeveniments.",
+          "max_depth_km": "Profunditat focal màxima en km (0–700). Posa 700 per incloure terratrèmols a qualsevol profunditat. Els terratrèmols superficials (< 70 km) generalment són més destructius.",
+          "only_reviewed": "Quan s'activa, mostra únicament els terratrèmols revisats manualment per l'USGS. Més precís però pot aparèixer amb retard.",
+          "alert_min_magnitude": "El sensor binari d'alerta s'activa quan es detecta un terratrèmol d'aquesta magnitud o superior dins de la finestra temporal.",
+          "alert_time_window": "Quantes hores enrere cal mirar per avaluar el sensor binari d'alerta (1–72 hores)."
+        }
+      }
+    },
+    "error": {
+      "invalid_coordinates": "Coordenades no vàlides. La latitud ha d'estar entre −90 i 90, la longitud entre −180 i 180.",
+      "invalid_radius": "El radi ha d'estar entre 10 i 20.000 km.",
+      "cannot_connect": "No es pot connectar a l'API de l'USGS. Comprova la connexió a internet i torna-ho a provar.",
+      "unknown": "Error inesperat. Comprova els registres de Home Assistant per a més detalls."
+    },
+    "abort": {
+      "already_configured": "Aquesta instància ja està configurada."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Reconfigura Seismic World Earthquakes",
+        "description": "Actualitza la configuració bàsica d'aquesta instància.",
+        "data": {
+          "name": "Nom de la instància",
+          "instance_type": "Tipus d'instància",
+          "min_magnitude": "Magnitud mínima (escala Richter)",
+          "feed_period": "Període de dades",
+          "max_events": "Màxim d'esdeveniments al mapa",
+          "units": "Unitats de distància",
+          "sort_by": "Ordenar per"
+        },
+        "data_description": {
+          "min_magnitude": "Només s'inclouran els terratrèmols amb magnitud igual o superior a aquest valor (0.0–9.9).",
+          "max_events": "Nombre màxim de terratrèmols al mapa (50–500). Els esdeveniments amb M≥6.0 sempre es conserven.",
+          "sort_by": "Defineix l'ordre en què apareixen els terratrèmols al mapa i als sensors."
+        }
+      },
+      "area": {
+        "title": "Configuració d'àrea personalitzada",
+        "description": "Actualitza l'àrea geogràfica supervisada.",
+        "data": {
+          "latitude": "Latitud del centre",
+          "longitude": "Longitud del centre",
+          "radius_km": "Radi de cerca (km)"
+        },
+        "data_description": {
+          "latitude": "Latitud del centre de l'àrea supervisada (−90 a 90).",
+          "longitude": "Longitud del centre de l'àrea supervisada (−180 a 180).",
+          "radius_km": "Radi en quilòmetres al voltant del punt central (10–20.000 km)."
+        }
+      },
+      "filters": {
+        "title": "Filtres i sensor d'alerta",
+        "description": "Actualitza els filtres opcionals i la configuració del sensor d'alerta.",
+        "data": {
+          "min_alert_level": "Nivell mínim d'alerta PAGER",
+          "only_tsunami": "Mostrar només esdeveniments amb avís de tsunami",
+          "max_depth_km": "Profunditat màxima (km)",
+          "only_reviewed": "Només esdeveniments revisats",
+          "alert_min_magnitude": "Sensor d'alerta — magnitud mínima",
+          "alert_time_window": "Sensor d'alerta — finestra temporal"
+        },
+        "data_description": {
+          "min_alert_level": "Filtra els terratrèmols per nivell d'alerta PAGER de l'USGS. Selecciona 'Cap' per mostrar tots els esdeveniments.",
+          "max_depth_km": "Profunditat focal màxima en km (0–700). Posa 700 per incloure terratrèmols a qualsevol profunditat. Els terratrèmols superficials (< 70 km) generalment són més destructius.",
+          "only_reviewed": "Quan s'activa, mostra únicament els terratrèmols revisats manualment per l'USGS.",
+          "alert_min_magnitude": "El sensor binari d'alerta s'activa quan es detecta un terratrèmol d'aquesta magnitud o superior.",
+          "alert_time_window": "Quantes hores enrere cal mirar per avaluar el sensor binari d'alerta (1–72 hores)."
+        }
+      }
+    },
+    "error": {
+      "invalid_coordinates": "Coordenades no vàlides. La latitud ha d'estar entre −90 i 90, la longitud entre −180 i 180.",
+      "invalid_radius": "El radi ha d'estar entre 10 i 20.000 km.",
+      "unknown": "Error inesperat. Comprova els registres de Home Assistant."
+    }
+  },
+  "selector": {
+    "instance_type": {
+      "options": {
+        "global": "Global (tot el món)",
+        "custom_area": "Àrea personalitzada (radi)"
+      }
+    },
+    "feed_period": {
+      "options": {
+        "hour": "Última hora",
+        "day": "Últimes 24 hores",
+        "week": "Últims 7 dies",
+        "month": "Últims 30 dies"
+      }
+    },
+    "units": {
+      "options": {
+        "km": "Quilòmetres (km)",
+        "mi": "Milles (mi)"
+      }
+    },
+    "sort_by": {
+      "options": {
+        "magnitude": "Magnitud (el més fort primer)",
+        "time": "Temps (el més recent primer)",
+        "distance": "Distància (el més proper primer)"
+      }
+    },
+    "alert_level": {
+      "options": {
+        "none": "Cap (mostra tots)",
+        "green": "Verd",
+        "yellow": "Groc",
+        "orange": "Taronja",
+        "red": "Vermell (el més greu)"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "total_earthquakes": {
+        "name": "Total de terratrèmols"
+      },
+      "strongest_magnitude": {
+        "name": "Terratrèmol més fort"
+      },
+      "strongest_location": {
+        "name": "Localització del més fort"
+      },
+      "average_magnitude": {
+        "name": "Magnitud mitjana"
+      },
+      "latest_earthquake": {
+        "name": "Últim terratrèmol"
+      },
+      "latest_earthquake_time": {
+        "name": "Hora de l'últim terratrèmol"
+      },
+      "earthquakes_last_hour": {
+        "name": "Terratrèmols a l'última hora"
+      },
+      "significant_earthquakes": {
+        "name": "Terratrèmols significatius"
+      },
+      "tsunami_warnings": {
+        "name": "Avisos de tsunami actius"
+      },
+      "highest_alert_level": {
+        "name": "Nivell d'alerta màxim"
+      },
+      "red_alert_count": {
+        "name": "Esdeveniments en alerta vermella"
+      },
+      "nearest_distance": {
+        "name": "Distància al terratrèmol més proper"
+      },
+      "nearest_magnitude": {
+        "name": "Magnitud del terratrèmol més proper"
+      },
+      "last_update": {
+        "name": "Última actualització"
+      },
+      "api_status": {
+        "name": "Estat de l'API"
+      },
+      "events_fetched": {
+        "name": "Esdeveniments obtinguts"
+      },
+      "events_displayed": {
+        "name": "Esdeveniments mostrats"
+      }
+    },
+    "binary_sensor": {
+      "earthquake_alert": {
+        "name": "Alerta de terratrèmol"
+      },
+      "tsunami_warning": {
+        "name": "Avís de tsunami actiu"
+      }
+    },
+    "button": {
+      "force_refresh": {
+        "name": "Actualitzar ara"
+      }
+    },
+    "image": {
+      "shakemap": {
+        "name": "Mapa de sacsejada (ShakeMap)"
+      }
+    },
+    "calendar": {
+      "earthquakes": {
+        "name": "Terratrèmols"
+      }
+    },
+    "event": {
+      "new_earthquake": {
+        "name": "Nou terratrèmol detectat",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "earthquake_detected": "Terratrèmol detectat"
+            }
+          }
+        }
+      }
+    }
+  }
+}
