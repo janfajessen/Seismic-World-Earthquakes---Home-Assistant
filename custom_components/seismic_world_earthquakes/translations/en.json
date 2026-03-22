@@ -1,0 +1,254 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Seismic World Earthquakes",
+        "description": "Configure this monitoring instance. You can create multiple instances to monitor different areas or magnitude thresholds.",
+        "data": {
+          "name": "Instance name",
+          "instance_type": "Instance type",
+          "min_magnitude": "Minimum magnitude (Richter scale)",
+          "feed_period": "Data period",
+          "max_events": "Maximum events on map",
+          "units": "Distance units",
+          "sort_by": "Sort events by"
+        },
+        "data_description": {
+          "min_magnitude": "Only earthquakes equal to or above this magnitude will be included (0.0–9.9).",
+          "max_events": "Maximum number of earthquakes displayed on the map (50–500). Events with M≥6.0 are always kept regardless of this limit.",
+          "sort_by": "Defines the order in which earthquakes appear on the map and in sensors."
+        }
+      },
+      "area": {
+        "title": "Custom Area Configuration",
+        "description": "Define the geographic area to monitor. All earthquakes within the specified radius of the centre point will be included.",
+        "data": {
+          "latitude": "Centre latitude",
+          "longitude": "Centre longitude",
+          "radius_km": "Search radius (km)"
+        },
+        "data_description": {
+          "latitude": "Latitude of the centre of the monitored area (−90 to 90).",
+          "longitude": "Longitude of the centre of the monitored area (−180 to 180).",
+          "radius_km": "Radius in kilometres around the centre point (10–20,000 km)."
+        }
+      },
+      "filters": {
+        "title": "Filters & Alert Sensor",
+        "description": "Optionally restrict which earthquakes are shown, and configure the earthquake alert binary sensor.",
+        "data": {
+          "min_alert_level": "Minimum PAGER alert level",
+          "only_tsunami": "Only show events with tsunami warning",
+          "max_depth_km": "Maximum depth (km)",
+          "only_reviewed": "Only reviewed events",
+          "alert_min_magnitude": "Alert sensor — minimum magnitude",
+          "alert_time_window": "Alert sensor — time window"
+        },
+        "data_description": {
+          "min_alert_level": "Filter earthquakes by USGS PAGER alert level. Select 'None' to show all events regardless of alert level.",
+          "max_depth_km": "Maximum focal depth in km (0–700). Set to 700 to include earthquakes at any depth. Shallow events (< 70 km) are generally more destructive.",
+          "only_reviewed": "When enabled, only shows earthquakes that have been manually reviewed by USGS. More accurate but may appear with a delay.",
+          "alert_min_magnitude": "The earthquake alert binary sensor turns ON when an earthquake of this magnitude or greater is detected within the time window.",
+          "alert_time_window": "How many hours back to look when evaluating the earthquake alert binary sensor (1–72 hours)."
+        }
+      }
+    },
+    "error": {
+      "invalid_coordinates": "Invalid coordinates. Latitude must be between −90 and 90, longitude between −180 and 180.",
+      "invalid_radius": "Radius must be between 10 and 20,000 km.",
+      "cannot_connect": "Cannot connect to the USGS API. Please check your internet connection and try again.",
+      "unknown": "Unexpected error. Please check the Home Assistant logs for more details."
+    },
+    "abort": {
+      "already_configured": "This instance is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Reconfigure Seismic World Earthquakes",
+        "description": "Update the basic settings for this monitoring instance.",
+        "data": {
+          "name": "Instance name",
+          "instance_type": "Instance type",
+          "min_magnitude": "Minimum magnitude (Richter scale)",
+          "feed_period": "Data period",
+          "max_events": "Maximum events on map",
+          "units": "Distance units",
+          "sort_by": "Sort events by"
+        },
+        "data_description": {
+          "min_magnitude": "Only earthquakes equal to or above this magnitude will be included (0.0–9.9).",
+          "max_events": "Maximum number of earthquakes displayed on the map (50–500). Events with M≥6.0 are always kept regardless of this limit.",
+          "sort_by": "Defines the order in which earthquakes appear on the map and in sensors."
+        }
+      },
+      "area": {
+        "title": "Custom Area Configuration",
+        "description": "Update the geographic area to monitor.",
+        "data": {
+          "latitude": "Centre latitude",
+          "longitude": "Centre longitude",
+          "radius_km": "Search radius (km)"
+        },
+        "data_description": {
+          "latitude": "Latitude of the centre of the monitored area (−90 to 90).",
+          "longitude": "Longitude of the centre of the monitored area (−180 to 180).",
+          "radius_km": "Radius in kilometres around the centre point (10–20,000 km)."
+        }
+      },
+      "filters": {
+        "title": "Filters & Alert Sensor",
+        "description": "Update optional filters and the earthquake alert binary sensor configuration.",
+        "data": {
+          "min_alert_level": "Minimum PAGER alert level",
+          "only_tsunami": "Only show events with tsunami warning",
+          "max_depth_km": "Maximum depth (km)",
+          "only_reviewed": "Only reviewed events",
+          "alert_min_magnitude": "Alert sensor — minimum magnitude",
+          "alert_time_window": "Alert sensor — time window"
+        },
+        "data_description": {
+          "min_alert_level": "Filter earthquakes by USGS PAGER alert level. Select 'None' to show all events regardless of alert level.",
+          "max_depth_km": "Maximum focal depth in km (0–700). Set to 700 to include earthquakes at any depth. Shallow events (< 70 km) are generally more destructive.",
+          "only_reviewed": "When enabled, only shows earthquakes that have been manually reviewed by USGS. More accurate but may appear with a delay.",
+          "alert_min_magnitude": "The earthquake alert binary sensor turns ON when an earthquake of this magnitude or greater is detected within the time window.",
+          "alert_time_window": "How many hours back to look when evaluating the earthquake alert binary sensor (1–72 hours)."
+        }
+      }
+    },
+    "error": {
+      "invalid_coordinates": "Invalid coordinates. Latitude must be between −90 and 90, longitude between −180 and 180.",
+      "invalid_radius": "Radius must be between 10 and 20,000 km.",
+      "unknown": "Unexpected error. Please check the Home Assistant logs for more details."
+    }
+  },
+  "selector": {
+    "instance_type": {
+      "options": {
+        "global": "Global (worldwide)",
+        "custom_area": "Custom area (radius)"
+      }
+    },
+    "feed_period": {
+      "options": {
+        "hour": "Last hour",
+        "day": "Last 24 hours",
+        "week": "Last 7 days",
+        "month": "Last 30 days"
+      }
+    },
+    "units": {
+      "options": {
+        "km": "Kilometres (km)",
+        "mi": "Miles (mi)"
+      }
+    },
+    "sort_by": {
+      "options": {
+        "magnitude": "Magnitude (strongest first)",
+        "time": "Time (most recent first)",
+        "distance": "Distance (nearest first)"
+      }
+    },
+    "alert_level": {
+      "options": {
+        "none": "None (show all)",
+        "green": "Green",
+        "yellow": "Yellow",
+        "orange": "Orange",
+        "red": "Red (most severe)"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "total_earthquakes": {
+        "name": "Total earthquakes"
+      },
+      "strongest_magnitude": {
+        "name": "Strongest earthquake"
+      },
+      "strongest_location": {
+        "name": "Strongest earthquake location"
+      },
+      "average_magnitude": {
+        "name": "Average magnitude"
+      },
+      "latest_earthquake": {
+        "name": "Latest earthquake"
+      },
+      "latest_earthquake_time": {
+        "name": "Latest earthquake time"
+      },
+      "earthquakes_last_hour": {
+        "name": "Earthquakes last hour"
+      },
+      "significant_earthquakes": {
+        "name": "Significant earthquakes"
+      },
+      "tsunami_warnings": {
+        "name": "Active tsunami warnings"
+      },
+      "highest_alert_level": {
+        "name": "Highest alert level"
+      },
+      "red_alert_count": {
+        "name": "Red alert events"
+      },
+      "nearest_distance": {
+        "name": "Nearest earthquake distance"
+      },
+      "nearest_magnitude": {
+        "name": "Nearest earthquake magnitude"
+      },
+      "last_update": {
+        "name": "Last update"
+      },
+      "api_status": {
+        "name": "API status"
+      },
+      "events_fetched": {
+        "name": "Events fetched"
+      },
+      "events_displayed": {
+        "name": "Events displayed"
+      }
+    },
+    "binary_sensor": {
+      "earthquake_alert": {
+        "name": "Earthquake alert"
+      },
+      "tsunami_warning": {
+        "name": "Tsunami warning active"
+      }
+    },
+    "button": {
+      "force_refresh": {
+        "name": "Force refresh"
+      }
+    },
+    "image": {
+      "shakemap": {
+        "name": "ShakeMap"
+      }
+    },
+    "calendar": {
+      "earthquakes": {
+        "name": "Earthquakes"
+      }
+    },
+    "event": {
+      "new_earthquake": {
+        "name": "New earthquake detected",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "earthquake_detected": "Earthquake detected"
+            }
+          }
+        }
+      }
+    }
+  }
+}
