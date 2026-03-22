@@ -1,0 +1,208 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Seismic World Jordskjelv",
+        "description": "Konfigurer denne overvåkingsinstansen. Du kan opprette flere instanser for å overvåke ulike områder eller magnitudeterskler.",
+        "data": {
+          "name": "Navn på instans",
+          "instance_type": "Instanstype",
+          "min_magnitude": "Minimum magnitude (Richters skala)",
+          "feed_period": "Dataperiode",
+          "max_events": "Maksimalt antall hendelser på kartet",
+          "units": "Avstandsenheter",
+          "sort_by": "Sorter hendelser etter"
+        },
+        "data_description": {
+          "min_magnitude": "Bare jordskjelv med en magnitude lik eller over denne verdien vil bli inkludert (0.0–9.9).",
+          "max_events": "Maksimalt antall jordskjelv vist på kartet (50–500). Hendelser med M≥6.0 beholdes alltid, uavhengig av denne grensen.",
+          "sort_by": "Definerer rekkefølgen jordskjelv vises i på kartet og i sensorene."
+        }
+      },
+      "area": {
+        "title": "Egendefinert områdekonsfigurasjon",
+        "description": "Definer det geografiske området som skal overvåkes. Alle jordskjelv innenfor den angitte radiusen fra midtpunktet vil bli inkludert.",
+        "data": {
+          "latitude": "Senter breddegrad",
+          "longitude": "Senter lengdegrad",
+          "radius_km": "Søkeradius (km)"
+        },
+        "data_description": {
+          "latitude": "Breddegrad for sentrum av det overvåkede området (-90 til 90).",
+          "longitude": "Lengdegrad for sentrum av det overvåkede området (-180 til 180).",
+          "radius_km": "Radius i kilometer rundt midtpunktet (10–20 000 km)."
+        }
+      },
+      "filters": {
+        "title": "Filtre og alarmsensor",
+        "description": "Begrens eventuelt hvilke jordskjelv som vises, og konfigurer den binære sensoren for jordskjelvvarsling.",
+        "data": {
+          "min_alert_level": "Minimum PAGER-alarmnivå",
+          "only_tsunami": "Vis bare hendelser med tsunamivarsel",
+          "max_depth_km": "Maksimal dybde (km)",
+          "only_reviewed": "Bare gjennomgåtte hendelser",
+          "alert_min_magnitude": "Alarmsensor — minimum magnitude",
+          "alert_time_window": "Alarmsensor — tidsvindu"
+        },
+        "data_description": {
+          "min_alert_level": "Filtrer jordskjelv etter USGS PAGER-varslingsnivå. Velg 'Ingen' for å se alle hendelser uavhengig av varslingsnivå.",
+          "max_depth_km": "Maksimal fokal dybde i km (0–700). Sett til 700 for å inkludere jordskjelv på alle dybder. Grunne hendelser (< 70 km) er vanligvis mer destruktive.",
+          "only_reviewed": "Når aktivert, vises bare jordskjelv som er manuelt gjennomgått av USGS. Mer nøyaktig, men kan vises med forsinkelse.",
+          "alert_min_magnitude": "Den binære jordskjelvvarslingssensoren slår seg PÅ når et jordskjelv med denne eller høyere magnitude oppdages innenfor tidsvinduet.",
+          "alert_time_window": "Hvor mange timer man skal se tilbake når den binære jordskjelvvarslingssensoren evalueres (1–72 timer)."
+        }
+      }
+    },
+    "error": {
+      "invalid_coordinates": "Ugyldige koordinater. Breddegrad må være mellom -90 og 90, lengdegrad mellom -180 og 180.",
+      "invalid_radius": "Radius må være mellom 10 og 20 000 km.",
+      "cannot_connect": "Kunne ikke koble til USGS API. Sjekk internettforbindelsen og prøv på nytt.",
+      "unknown": "Uventet feil. Sjekk Home Assistant-loggene for mer informasjon."
+    },
+    "abort": {
+      "already_configured": "Denne instansen er allerede konfigurert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Konfigurer Seismic World Jordskjelv på nytt",
+        "description": "Oppdater grunninnstillingene for denne overvåkingsinstansen.",
+        "data": {
+          "name": "Navn på instans",
+          "instance_type": "Instanstype",
+          "min_magnitude": "Minimum magnitude (Richters skala)",
+          "feed_period": "Dataperiode",
+          "max_events": "Maksimalt antall hendelser på kartet",
+          "units": "Avstandsenheter",
+          "sort_by": "Sorter hendelser etter"
+        },
+        "data_description": {
+          "min_magnitude": "Bare jordskjelv med en magnitude lik eller over denne verdien vil bli inkludert (0.0–9.9).",
+          "max_events": "Maksimalt antall jordskjelv vist på kartet (50–500). Hendelser med M≥6.0 beholdes alltid, uavhengig av denne grensen.",
+          "sort_by": "Definerer rekkefølgen jordskjelv vises i på kartet og i sensorene."
+        }
+      },
+      "area": {
+        "title": "Egendefinert områdekonsfigurasjon",
+        "description": "Oppdater det geografiske området som skal overvåkes.",
+        "data": {
+          "latitude": "Senter breddegrad",
+          "longitude": "Senter lengdegrad",
+          "radius_km": "Søkeradius (km)"
+        },
+        "data_description": {
+          "latitude": "Breddegrad for sentrum av det overvåkede området (-90 til 90).",
+          "longitude": "Lengdegrad for sentrum av det overvåkede området (-180 til 180).",
+          "radius_km": "Radius i kilometer rundt midtpunktet (10–20 000 km)."
+        }
+      },
+      "filters": {
+        "title": "Filtre og alarmsensor",
+        "description": "Oppdater valgfrie filtre og konfigurasjonen for den binære jordskjelvvarslingssensoren.",
+        "data": {
+          "min_alert_level": "Minimum PAGER-alarmnivå",
+          "only_tsunami": "Vis bare hendelser med tsunamivarsel",
+          "max_depth_km": "Maksimal dybde (km)",
+          "only_reviewed": "Bare gjennomgåtte hendelser",
+          "alert_min_magnitude": "Alarmsensor — minimum magnitude",
+          "alert_time_window": "Alarmsensor — tidsvindu"
+        },
+        "data_description": {
+          "min_alert_level": "Filtrer jordskjelv etter USGS PAGER-varslingsnivå. Velg 'Ingen' for å se alle hendelser uavhengig av varslingsnivå.",
+          "max_depth_km": "Maksimal fokal dybde i km (0–700). Sett til 700 for å inkludere jordskjelv på alle dybder. Grunne hendelser (< 70 km) er vanligvis mer destruktive.",
+          "only_reviewed": "Når aktivert, vises bare jordskjelv som er manuelt gjennomgått av USGS. Mer nøyaktig, men kan vises med forsinkelse.",
+          "alert_min_magnitude": "Den binære jordskjelvvarslingssensoren slår seg PÅ når et jordskjelv med denne eller høyere magnitude oppdages innenfor tidsvinduet.",
+          "alert_time_window": "Hvor mange timer man skal se tilbake når den binære jordskjelvvarslingssensoren evalueres (1–72 timer)."
+        }
+      }
+    },
+    "error": {
+      "invalid_coordinates": "Ugyldige koordinater. Breddegrad må være mellom -90 og 90, lengdegrad mellom -180 og 180.",
+      "invalid_radius": "Radius må være mellom 10 og 20 000 km.",
+      "unknown": "Uventet feil. Sjekk Home Assistant-loggene for mer informasjon."
+    }
+  },
+  "selector": {
+    "instance_type": {
+      "options": {
+        "global": "Global (hele verden)",
+        "custom_area": "Egendefinert område (radius)"
+      }
+    },
+    "feed_period": {
+      "options": {
+        "hour": "Siste time",
+        "day": "Siste 24 timer",
+        "week": "Siste 7 dager",
+        "month": "Siste 30 dager"
+      }
+    },
+    "units": {
+      "options": {
+        "km": "Kilometer (km)",
+        "mi": "Miles (mi)"
+      }
+    },
+    "sort_by": {
+      "options": {
+        "magnitude": "Magnitude (kraftigste først)",
+        "time": "Tid (nyeste først)",
+        "distance": "Avstand (nærmeste først)"
+      }
+    },
+    "alert_level": {
+      "options": {
+        "none": "Ingen (vis alle)",
+        "green": "Grønn",
+        "yellow": "Gul",
+        "orange": "Oransje",
+        "red": "Rød (mest alvorlig)"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "total_earthquakes": { "name": "Antall jordskjelv totalt" },
+      "strongest_magnitude": { "name": "Kraftigste jordskjelv" },
+      "strongest_location": { "name": "Lokasjon for kraftigste jordskjelv" },
+      "average_magnitude": { "name": "Gjennomsnittlig magnitude" },
+      "latest_earthquake": { "name": "Siste jordskjelv" },
+      "latest_earthquake_time": { "name": "Tidspunkt for siste jordskjelv" },
+      "earthquakes_last_hour": { "name": "Jordskjelv siste time" },
+      "significant_earthquakes": { "name": "Signifikante jordskjelv" },
+      "tsunami_warnings": { "name": "Aktive tsunamivarsler" },
+      "highest_alert_level": { "name": "Høyeste alarmnivå" },
+      "red_alert_count": { "name": "Hendelser med rød alarm" },
+      "nearest_distance": { "name": "Avstand til nærmeste jordskjelv" },
+      "nearest_magnitude": { "name": "Magnitude av nærmeste jordskjelv" },
+      "last_update": { "name": "Siste oppdatering" },
+      "api_status": { "name": "API-status" },
+      "events_fetched": { "name": "Hentede hendelser" },
+      "events_displayed": { "name": "Viste hendelser" }
+    },
+    "binary_sensor": {
+      "earthquake_alert": { "name": "Jordskjelvvarsling" },
+      "tsunami_warning": { "name": "Tsunamivarsel aktivt" }
+    },
+    "button": {
+      "force_refresh": { "name": "Tving oppdatering" }
+    },
+    "image": {
+      "shakemap": { "name": "ShakeMap" }
+    },
+    "calendar": {
+      "earthquakes": { "name": "Jordskjelv" }
+    },
+    "event": {
+      "new_earthquake": {
+        "name": "Nytt jordskjelv oppdaget",
+        "state_attributes": {
+          "event_type": {
+            "state": { "earthquake_detected": "Jordskjelv oppdaget" }
+          }
+        }
+      }
+    }
+  }
+}
