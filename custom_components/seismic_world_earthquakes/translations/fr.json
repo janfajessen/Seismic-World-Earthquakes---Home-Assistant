@@ -1,0 +1,254 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Seismic World Earthquakes",
+        "description": "Configurez cette instance de surveillance. Vous pouvez créer plusieurs instances pour surveiller différentes zones ou seuils de magnitude.",
+        "data": {
+          "name": "Nom de l'instance",
+          "instance_type": "Type d'instance",
+          "min_magnitude": "Magnitude minimale (échelle de Richter)",
+          "feed_period": "Période de données",
+          "max_events": "Nombre maximum d'événements sur la carte",
+          "units": "Unités de distance",
+          "sort_by": "Trier par"
+        },
+        "data_description": {
+          "min_magnitude": "Seuls les séismes d'une magnitude égale ou supérieure à cette valeur seront inclus (0.0–9.9).",
+          "max_events": "Nombre maximum de séismes sur la carte (50–500). Les événements de M≥6.0 sont toujours conservés.",
+          "sort_by": "Définit l'ordre d'affichage des séismes sur la carte et dans les capteurs."
+        }
+      },
+      "area": {
+        "title": "Configuration de zone personnalisée",
+        "description": "Définissez la zone géographique à surveiller.",
+        "data": {
+          "latitude": "Latitude du centre",
+          "longitude": "Longitude du centre",
+          "radius_km": "Rayon de recherche (km)"
+        },
+        "data_description": {
+          "latitude": "Latitude du centre de la zone surveillée (−90 à 90).",
+          "longitude": "Longitude du centre de la zone surveillée (−180 à 180).",
+          "radius_km": "Rayon en kilomètres autour du point central (10–20 000 km)."
+        }
+      },
+      "filters": {
+        "title": "Filtres et capteur d'alerte",
+        "description": "Restreignez optionnellement les séismes affichés et configurez le capteur binaire d'alerte.",
+        "data": {
+          "min_alert_level": "Niveau d'alerte PAGER minimum",
+          "only_tsunami": "Afficher uniquement les événements avec alerte tsunami",
+          "max_depth_km": "Profondeur maximale (km)",
+          "only_reviewed": "Uniquement les événements révisés",
+          "alert_min_magnitude": "Capteur d'alerte — magnitude minimale",
+          "alert_time_window": "Capteur d'alerte — fenêtre temporelle"
+        },
+        "data_description": {
+          "min_alert_level": "Filtre les séismes par niveau d'alerte PAGER de l'USGS. Sélectionnez 'Aucun' pour afficher tous les événements.",
+          "max_depth_km": "Profondeur focale maximale en km (0–700). Mettez 700 pour inclure les séismes à toute profondeur. Les séismes superficiels (< 70 km) sont généralement plus destructeurs.",
+          "only_reviewed": "Affiche uniquement les séismes révisés manuellement par l'USGS. Plus précis mais peut apparaître avec un délai.",
+          "alert_min_magnitude": "Le capteur binaire d'alerte s'active lorsqu'un séisme de cette magnitude ou supérieure est détecté dans la fenêtre temporelle.",
+          "alert_time_window": "Nombre d'heures en arrière pour évaluer le capteur d'alerte (1–72 heures)."
+        }
+      }
+    },
+    "error": {
+      "invalid_coordinates": "Coordonnées invalides. La latitude doit être entre −90 et 90, la longitude entre −180 et 180.",
+      "invalid_radius": "Le rayon doit être entre 10 et 20 000 km.",
+      "cannot_connect": "Impossible de se connecter à l'API USGS. Vérifiez votre connexion Internet.",
+      "unknown": "Erreur inattendue. Consultez les journaux de Home Assistant pour plus de détails."
+    },
+    "abort": {
+      "already_configured": "Cette instance est déjà configurée."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Reconfigurer Seismic World Earthquakes",
+        "description": "Mettez à jour les paramètres de base de cette instance.",
+        "data": {
+          "name": "Nom de l'instance",
+          "instance_type": "Type d'instance",
+          "min_magnitude": "Magnitude minimale (échelle de Richter)",
+          "feed_period": "Période de données",
+          "max_events": "Nombre maximum d'événements sur la carte",
+          "units": "Unités de distance",
+          "sort_by": "Trier par"
+        },
+        "data_description": {
+          "min_magnitude": "Seuls les séismes d'une magnitude égale ou supérieure à cette valeur seront inclus (0.0–9.9).",
+          "max_events": "Nombre maximum de séismes sur la carte (50–500). Les événements de M≥6.0 sont toujours conservés.",
+          "sort_by": "Définit l'ordre d'affichage des séismes."
+        }
+      },
+      "area": {
+        "title": "Configuration de zone personnalisée",
+        "description": "Mettez à jour la zone géographique surveillée.",
+        "data": {
+          "latitude": "Latitude du centre",
+          "longitude": "Longitude du centre",
+          "radius_km": "Rayon de recherche (km)"
+        },
+        "data_description": {
+          "latitude": "Latitude du centre de la zone surveillée (−90 à 90).",
+          "longitude": "Longitude du centre de la zone surveillée (−180 à 180).",
+          "radius_km": "Rayon en kilomètres autour du point central (10–20 000 km)."
+        }
+      },
+      "filters": {
+        "title": "Filtres et capteur d'alerte",
+        "description": "Mettez à jour les filtres et la configuration du capteur d'alerte.",
+        "data": {
+          "min_alert_level": "Niveau d'alerte PAGER minimum",
+          "only_tsunami": "Afficher uniquement les événements avec alerte tsunami",
+          "max_depth_km": "Profondeur maximale (km)",
+          "only_reviewed": "Uniquement les événements révisés",
+          "alert_min_magnitude": "Capteur d'alerte — magnitude minimale",
+          "alert_time_window": "Capteur d'alerte — fenêtre temporelle"
+        },
+        "data_description": {
+          "min_alert_level": "Filtre par niveau d'alerte PAGER de l'USGS.",
+          "max_depth_km": "Profondeur focale maximale en km (0–700). Mettez 700 pour inclure les séismes à toute profondeur. Les séismes superficiels (< 70 km) sont généralement plus destructeurs.",
+          "only_reviewed": "Uniquement les séismes révisés manuellement par l'USGS.",
+          "alert_min_magnitude": "Magnitude minimale pour le capteur d'alerte.",
+          "alert_time_window": "Fenêtre temporelle pour le capteur d'alerte (1–72 heures)."
+        }
+      }
+    },
+    "error": {
+      "invalid_coordinates": "Coordonnées invalides.",
+      "invalid_radius": "Le rayon doit être entre 10 et 20 000 km.",
+      "unknown": "Erreur inattendue. Consultez les journaux de Home Assistant."
+    }
+  },
+  "selector": {
+    "instance_type": {
+      "options": {
+        "global": "Global (monde entier)",
+        "custom_area": "Zone personnalisée (rayon)"
+      }
+    },
+    "feed_period": {
+      "options": {
+        "hour": "Dernière heure",
+        "day": "Dernières 24 heures",
+        "week": "7 derniers jours",
+        "month": "30 derniers jours"
+      }
+    },
+    "units": {
+      "options": {
+        "km": "Kilomètres (km)",
+        "mi": "Miles (mi)"
+      }
+    },
+    "sort_by": {
+      "options": {
+        "magnitude": "Magnitude (le plus fort en premier)",
+        "time": "Temps (le plus récent en premier)",
+        "distance": "Distance (le plus proche en premier)"
+      }
+    },
+    "alert_level": {
+      "options": {
+        "none": "Aucun (tout afficher)",
+        "green": "Vert",
+        "yellow": "Jaune",
+        "orange": "Orange",
+        "red": "Rouge (le plus grave)"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "total_earthquakes": {
+        "name": "Total séismes"
+      },
+      "strongest_magnitude": {
+        "name": "Séisme le plus fort"
+      },
+      "strongest_location": {
+        "name": "Localisation du plus fort"
+      },
+      "average_magnitude": {
+        "name": "Magnitude moyenne"
+      },
+      "latest_earthquake": {
+        "name": "Dernier séisme"
+      },
+      "latest_earthquake_time": {
+        "name": "Heure du dernier séisme"
+      },
+      "earthquakes_last_hour": {
+        "name": "Séismes dernière heure"
+      },
+      "significant_earthquakes": {
+        "name": "Séismes significatifs"
+      },
+      "tsunami_warnings": {
+        "name": "Alertes tsunami actives"
+      },
+      "highest_alert_level": {
+        "name": "Niveau d'alerte maximal"
+      },
+      "red_alert_count": {
+        "name": "Événements alerte rouge"
+      },
+      "nearest_distance": {
+        "name": "Distance séisme le plus proche"
+      },
+      "nearest_magnitude": {
+        "name": "Magnitude séisme le plus proche"
+      },
+      "last_update": {
+        "name": "Dernière mise à jour"
+      },
+      "api_status": {
+        "name": "Statut API"
+      },
+      "events_fetched": {
+        "name": "Événements récupérés"
+      },
+      "events_displayed": {
+        "name": "Événements affichés"
+      }
+    },
+    "binary_sensor": {
+      "earthquake_alert": {
+        "name": "Alerte séisme"
+      },
+      "tsunami_warning": {
+        "name": "Alerte tsunami active"
+      }
+    },
+    "button": {
+      "force_refresh": {
+        "name": "Actualiser maintenant"
+      }
+    },
+    "image": {
+      "shakemap": {
+        "name": "Carte d'intensité (ShakeMap)"
+      }
+    },
+    "calendar": {
+      "earthquakes": {
+        "name": "Séismes"
+      }
+    },
+    "event": {
+      "new_earthquake": {
+        "name": "Nouveau séisme détecté",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "earthquake_detected": "Séisme détecté"
+            }
+          }
+        }
+      }
+    }
+  }
+}
