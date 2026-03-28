@@ -13,7 +13,7 @@ and Tsunamis
 
 **The earthquake monitoring integration Home Assistant deserves.**
 
-Real-time global seismic data · Interactive map setup · No API key · No YAML · Free forever
+Real-time global seismic data · Interactive map setup · No API key · No YAML
 
 [Installation](#installation) · [Configuration](#configuration) · [Entities](#entities) · [Automations](#automation-examples) · [Why this integration?](#why-this-integration)
 
