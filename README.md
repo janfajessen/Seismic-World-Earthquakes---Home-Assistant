@@ -1,5 +1,5 @@
 # 🌍 Seismic World Earthquakes
-
+and Tsunamis 
 <div align="center">
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
