@@ -47,7 +47,7 @@ Home Assistant ships with a built-in USGS earthquake integration. It works — b
 | Depth, status, alert filters | ❌ | ✅ |
 | Sort by magnitude / time / distance | ❌ | ✅ |
 | km / miles configurable | ❌ km only | ✅ |
-| Multilingual UI | ❌ English only | ✅ EN, CA, ES, FR |
+| Multilingual UI | ❌ English only | ✅ |
 | Active development | ❌ Legacy | ✅ |
 
 ---
