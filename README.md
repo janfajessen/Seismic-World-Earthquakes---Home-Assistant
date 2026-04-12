@@ -1,7 +1,8 @@
+<div align="center">
 
 # Seismic World Earthquakes
 and Tsunamis
-<div align="center">
+
 
 <img src="https://github.com/janfajessen/Seismic-World-Earthquakes/blob/044ed6b4bbc8e33a9ed2acd8e2abb300e2e35446/seismic_world_earthquakes.png?raw=true" alt="Seismic World Earthquakes" width="200">
 
