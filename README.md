@@ -288,3 +288,6 @@ Or onsider supporting development!
 [![Patreon](https://img.shields.io/badge/Patreon-Support-red.svg?style=for-the-badge)](https://www.patreon.com/janfajessen)
 </div>
 
+
+© [@janfajessen](https://github.com/janfajessen)
+
