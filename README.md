@@ -5,7 +5,8 @@ and Tsunamis
 # Home Assistant Integration
 
 
-<img src="brands/logo@2x.png" width="450"/>
+<img src="https://github.com/janfajessen/Seismic-World-Earthquakes---Home-Assistant/blob/c5ed7b9293d4c40c7f7a4e4975365c573db037a7/brand/logo%402x.png" width="450"/>
+
 
 ![Version](https://img.shields.io/badge/version-1.5.24-blue?style=for-the-badge)
 ![HA](https://img.shields.io/badge/Home%20Assistant-2024.1+-orange?style=for-the-badge&logo=home-assistant)
@@ -85,6 +86,9 @@ Home Assistant ships with a built-in USGS earthquake integration. It works — b
 5. Restart Home Assistant
 6. Go to **Settings → Devices & Services → + Add Integration**
 7. Search for **Seismic World Earthquakes**
+
+<img src="https://github.com/janfajessen/Seismic-World-Earthquakes---Home-Assistant/blob/c5ed7b9293d4c40c7f7a4e4975365c573db037a7/brand/icon%402x.png" width="100"/>
+
 
 ### Manual
 
@@ -278,6 +282,9 @@ Earthquake data provided by the [U.S. Geological Survey (USGS)](https://www.usgs
 ---
 
 <div align="center">
+
+<img src="https://github.com/janfajessen/Seismic-World-Earthquakes---Home-Assistant/blob/c5ed7b9293d4c40c7f7a4e4975365c573db037a7/brand/icon%402x.png" width="150"/>
+
 
 Made with ❤️ by [@janfajessen](https://github.com/janfajessen) · Data: [USGS](https://earthquake.usgs.gov/)
 
