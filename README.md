@@ -80,7 +80,7 @@ Home Assistant ships with a built-in USGS earthquake integration. It works — b
 ### Via HACS (recommended)
 
 1. Open HACS → **Integrations** → ⋮ menu → **Custom Repositories**
-2. Add URL: `https://github.com/janfajessen/seismic_world_earthquakes`
+2. Add URL: `https://github.com/janfajessen/Seismic-World-Earthquakes---Home-Assistant`
 3. Category: **Integration**
 4. Search for **Seismic World Earthquakes** and install
 5. Restart Home Assistant
